@@ -6,7 +6,7 @@ const words = ['avion', 'nationale', 'braise', 'bouillabaisse', 'culture', 'vier
 
 test('check that a word is inside a list', () => {
     expect(monDoigtDans.getWords('bise', words).length).toBe(3);
-    expect(monDoigtDans.getWords('anal', words).length).toBe(1);
+    expect(monDoigtDans.getWords('con', words).length).toBe(1);
 });
 
 test('check that uppercase and lowercase does not interfere', () => {
@@ -33,9 +33,7 @@ test('check that the word to search is a string', () => {
 
 test('check that a word is inside another word - bise is inside balise', () => {
     expect(monDoigtDans.checkWord('bise', 'balise')).toBe(true);
-})
-test('check that a word is inside another word - bise is inside balise', () => {
-    expect(monDoigtDans.checkWord('anal', 'nationale')).toBe(true);
+    expect(monDoigtDans.checkWord('con', 'camion')).toBe(true);
 })
 
 test('check that a word is NOT inside another word - voiture is NOT inside balise', () => {
