@@ -1,36 +1,55 @@
-const words = ['avion', 'nationale', 'braise', 'bouillabaisse', 'culture', 'vierge', 'camion', 'balise'];
 
-const wordSearch = 'bise';
+/**
+ * Check if a word is inside another word
+ * @param {string} wordToSearch
+ * @param {string} wordToCheck
+ * @returns a boolean check
+ *
+ */
+const checkWord = (wordToSearch, wordToCheck) => {
+  if (typeof wordToSearch !== "string") {
+    throw new Error("wordToSearch must be a string");
+  }
 
-const checkWord = (searchWord, wordToCheck) => {
-    // check if the letters of a word are in the wordToCheck
-    // i.e 'con' will return true if the wordToCheck is 'camion'
-    const splitSearchWord = searchWord.split('');
-    let searchWordIndex = 0;
-    const splitWordToCheck = wordToCheck.split('');
-    let reconstructedWord = '';
-    for (let i=0; i<splitWordToCheck.length; i++) {
-        const letter = splitWordToCheck[i];
-        if (letter !== splitSearchWord[searchWordIndex]) {
-            continue;
-        }
-        reconstructedWord = reconstructedWord + letter;
-        searchWordIndex++;
+  const splitWordToSearch = wordToSearch.trim().toLowerCase().split("");
+  let wordToSearchIndex = 0;
+
+  const splitWordToCheck = wordToCheck.trim().toLowerCase().split("");
+  let reconstructedWord = "";
+
+  for (let i = 0; i < splitWordToCheck.length; i++) {
+    const letter = splitWordToCheck[i];
+    if (letter !== splitWordToSearch[wordToSearchIndex]) {
+      continue;
     }
-    return reconstructedWord === searchWord
-}
+    wordToSearchIndex++;
+    reconstructedWord = reconstructedWord + letter;
+  }
+  return reconstructedWord.length === splitWordToSearch.length;
+};
 
+/**
+ *
+ * @param {string} wordToSearch
+ * @param {string[]} words
+ * @returns an array of the words containing the wordToSearch
+ */
+const getWords = (wordToSearch, words) => {
+  if (!Array.isArray(words)) {
+    throw new Error("words must be an array");
+  }
 
-const getWords = (wordSearch, words) => {
-    return words.filter(word => {
-        return checkWord(wordSearch, word);
-    })
-}
+  // Check that wordToSearch is a string
+  if (typeof wordToSearch !== "string") {
+    throw new Error("wordToSearch must be a string");
+  }
 
-
-console.log(getWords(wordSearch, words))
+  return words.filter((word) => {
+    return checkWord(wordToSearch, word);
+  });
+};
 
 module.exports = {
-    getWords,
-    checkWord
-}
+  getWords,
+  checkWord,
+};

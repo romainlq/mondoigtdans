@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "play": "node play.js",
+    "test": "jest"
   },
   "author": "Romain LE QUELLEC",
   "license": "ISC",
-  "dependencies": {
-    "prompt-sync": "^4.2.0"
+  "devDependencies": {
+    "prompt-sync": "^4.2.0",
+    "jest": "^27.3.1"
   }
 }
